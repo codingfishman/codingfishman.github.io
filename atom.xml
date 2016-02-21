@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>fishman的博客</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://cofingfishman.github.io/"/>
+  <updated>2016-02-21T13:05:43.000Z</updated>
+  <id>http://cofingfishman.github.io/</id>
+  
+  <author>
+    <name>Fishman Wang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>禁用手机触屏时那一瞬间的背景色</title>
+    <link href="http://cofingfishman.github.io/2016/02/21/%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E8%A7%A6%E5%B1%8F%E6%97%B6%E9%82%A3%E4%B8%80%E7%9E%AC%E9%97%B4%E7%9A%84%E8%83%8C%E6%99%AF%E8%89%B2/"/>
+    <id>http://cofingfishman.github.io/2016/02/21/禁用手机触屏时那一瞬间的背景色/</id>
+    <published>2016-02-21T12:44:35.000Z</published>
+    <updated>2016-02-21T13:05:43.000Z</updated>
+    
+    <content type="html">&lt;p&gt;当我们的H5页面是服务于APP的，也就是内嵌在APP里面使用时，我们总是希望H5表现得和原生APP一样。前不久，我遇到一个页面里面有很多的展开项，默认隐藏；当点击某个展开项的时候，隐藏的DIV显示出来。然而在点击展开栏的那一瞬间，浏览器总是会为该DIV的背景加上背景色，有些碍眼，出卖了他不是APP的本质。&lt;/p&gt;
+&lt;p&gt;其实这个是可以通过CSS来禁用的，老实说，真要和浏览器打交道的时候，CSS才是最懂它的那个。禁用点击时默认背景效果的代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;*&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;-webkit-tap-highlight-color&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;rgba&lt;/span&gt;(0, 0, 0, 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;-moz-tap-highlight-color&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;rgba&lt;/span&gt;(0, 0, 0, 0)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这样，当我们在手机上点击网页元素的时候，都不会有那一抹背景了。&lt;/p&gt;
+&lt;p&gt;参考 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MDN&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;当我们的H5页面是服务于APP的，也就是内嵌在APP里面使用时，我们总是希望H5表现得和原生APP一样。前不久，我遇到一个页面里面有很多的展开项，默认隐藏；当点击某个展开项的时候，隐藏的DIV显示出来。然而在点击展开栏的那一瞬间，浏览器总是会为该DIV的背景加上背景色，有些
+    
+    </summary>
+    
+    
+      <category term="CSS CSS3 H5+APP" scheme="http://cofingfishman.github.io/tags/CSS-CSS3-H5-APP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://cofingfishman.github.io/2016/02/21/hello-world/"/>
+    <id>http://cofingfishman.github.io/2016/02/21/hello-world/</id>
+    <published>2016-02-21T09:51:09.000Z</published>
+    <updated>2016-02-21T09:51:09.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;http://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;http://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;http://hexo.io
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>firstblog</title>
+    <link href="http://cofingfishman.github.io/2016/02/21/firstblog/"/>
+    <id>http://cofingfishman.github.io/2016/02/21/firstblog/</id>
+    <published>2016-02-21T09:37:48.000Z</published>
+    <updated>2016-02-21T12:42:46.000Z</updated>
+    
+    <content type="html">&lt;p&gt;这是在github.io上的第一篇日志，希望以后会越来越多。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是在github.io上的第一篇日志，希望以后会越来越多。&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="日记" scheme="http://cofingfishman.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+</feed>
