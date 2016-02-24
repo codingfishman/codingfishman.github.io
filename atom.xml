@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>fishman的博客</title>
-  
+  <title>codingfishman</title>
+  <subtitle>细雨湿衣看不见，闲花落地听无声</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://cofingfishman.github.io/"/>
-  <updated>2016-02-21T13:05:43.000Z</updated>
-  <id>http://cofingfishman.github.io/</id>
+  <link href="http://codingfishman.github.io/"/>
+  <updated>2016-02-24T16:17:04.000Z</updated>
+  <id>http://codingfishman.github.io/</id>
   
   <author>
     <name>Fishman Wang</name>
@@ -16,15 +16,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>flex布局与float的冲突</title>
+    <link href="http://codingfishman.github.io/2016/02/21/flex%E5%B8%83%E5%B1%80%E4%B8%8Efloat%E7%9A%84%E5%86%B2%E7%AA%81/"/>
+    <id>http://codingfishman.github.io/2016/02/21/flex布局与float的冲突/</id>
+    <published>2016-02-21T13:11:12.000Z</published>
+    <updated>2016-02-24T16:17:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;2015年的某一天，我在某外企当码农，用户对浏览器的使用不像我们大天朝，因此心情上轻松了不少。有一次，我和文博同志接到了一个新网站的任务，我无意中（还是经文博的提起后？）在&lt;a href=&quot;https://css-tricks.com/snippets/css/a-guide-to-flexbox/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CSS-Tricks&lt;/a&gt;上看到了一篇关于Flexbox的入门介绍，发现这和之前接触的float+margin+padding的布局大不一样，我想，那我们就用flex布局吧！这是第一次接触并使用到Flex布局，可以说用得很浅。&lt;/p&gt;
+&lt;p&gt;在后来一次的工作中，我遇到了这样一个很普通的场景，同一行的DIV，有两块：左和右，我自然地通过 &lt;code&gt;float:right&lt;/code&gt; 来将DIV右到了右边。&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.container&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;400px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;300px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.item&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;100px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;50px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;padding&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;7px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;15px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.right&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;float&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; right&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;container&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;item&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   left part&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;item right&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   right part&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然而事情发生了转折，left-div 和 right-div 的高度是不一样的（字体大小不一样），但是在同一行上都需要居中对齐，我于是想到了flex布局。&lt;br&gt;通过 &lt;code&gt;flex:space-between&lt;/code&gt; 将元素分别漂流到了两遍，并设置 &lt;code&gt;align-items:center&lt;/code&gt; 来实现垂直居中, 示例如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.container&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;400px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;300px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; -webkit-box&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; space-between&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-webkit-box-pack&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; justify&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;jusity-content&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; space-between&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-webkit-box-align&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; center&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;align-items&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; center&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;但是我忘记将里面的 &lt;code&gt;.right&lt;/code&gt; 样式移除&lt;/strong&gt;，而且在chrome之下，其表现是很正常的，我也以为事情完成了。&lt;/p&gt;
+&lt;p&gt;可是在后面真实的手机测试中，尤其是比较低版本系统的安卓手机(Android 4.1.1, webkit默认浏览器），我们发现&lt;strong&gt;right-part&lt;/strong&gt;这一块的DIV，直接消失了！ 经过debuggap的调试，我发现&lt;code&gt;float:right;&lt;/code&gt; 一旦拿掉，DIV就回来了。&lt;/p&gt;
+&lt;p&gt;注：邧一峰老师的flex介绍写得也很适合我们，附上链接 &lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;flex布局教程&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2015年的某一天，我在某外企当码农，用户对浏览器的使用不像我们大天朝，因此心情上轻松了不少。有一次，我和文博同志接到了一个新网站的任务，我无意中（还是经文博的提起后？）在&lt;a href=&quot;https://css-tricks.com/snippets/css/a-guid
+    
+    </summary>
+    
+    
+      <category term="CSS3 Mobile flex" scheme="http://codingfishman.github.io/tags/CSS3-Mobile-flex/"/>
+    
+  </entry>
+  
+  <entry>
     <title>禁用手机触屏时那一瞬间的背景色</title>
-    <link href="http://cofingfishman.github.io/2016/02/21/%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E8%A7%A6%E5%B1%8F%E6%97%B6%E9%82%A3%E4%B8%80%E7%9E%AC%E9%97%B4%E7%9A%84%E8%83%8C%E6%99%AF%E8%89%B2/"/>
-    <id>http://cofingfishman.github.io/2016/02/21/禁用手机触屏时那一瞬间的背景色/</id>
+    <link href="http://codingfishman.github.io/2016/02/21/%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E8%A7%A6%E5%B1%8F%E6%97%B6%E9%82%A3%E4%B8%80%E7%9E%AC%E9%97%B4%E7%9A%84%E8%83%8C%E6%99%AF%E8%89%B2/"/>
+    <id>http://codingfishman.github.io/2016/02/21/禁用手机触屏时那一瞬间的背景色/</id>
     <published>2016-02-21T12:44:35.000Z</published>
-    <updated>2016-02-21T13:05:43.000Z</updated>
+    <updated>2016-02-22T14:37:58.000Z</updated>
     
     <content type="html">&lt;p&gt;当我们的H5页面是服务于APP的，也就是内嵌在APP里面使用时，我们总是希望H5表现得和原生APP一样。前不久，我遇到一个页面里面有很多的展开项，默认隐藏；当点击某个展开项的时候，隐藏的DIV显示出来。然而在点击展开栏的那一瞬间，浏览器总是会为该DIV的背景加上背景色，有些碍眼，出卖了他不是APP的本质。&lt;/p&gt;
 &lt;p&gt;其实这个是可以通过CSS来禁用的，老实说，真要和浏览器打交道的时候，CSS才是最懂它的那个。禁用点击时默认背景效果的代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;*&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;-webkit-tap-highlight-color&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;rgba&lt;/span&gt;(0, 0, 0, 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;-moz-tap-highlight-color&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;rgba&lt;/span&gt;(0, 0, 0, 0)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;* &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-webkit-tap-highlight-color&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;function&quot;&gt;rgba&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-moz-tap-highlight-color&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;function&quot;&gt;rgba&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;这样，当我们在手机上点击网页元素的时候，都不会有那一抹背景了。&lt;/p&gt;
 &lt;p&gt;参考 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MDN&lt;/a&gt;&lt;/p&gt;
 </content>
@@ -36,41 +65,14 @@
     </summary>
     
     
-      <category term="CSS CSS3 H5+APP" scheme="http://cofingfishman.github.io/tags/CSS-CSS3-H5-APP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://cofingfishman.github.io/2016/02/21/hello-world/"/>
-    <id>http://cofingfishman.github.io/2016/02/21/hello-world/</id>
-    <published>2016-02-21T09:51:09.000Z</published>
-    <updated>2016-02-21T09:51:09.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;http://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;http://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;http://hexo.io
-    
-    </summary>
-    
+      <category term="CSS CSS3 H5+APP Mobile" scheme="http://codingfishman.github.io/tags/CSS-CSS3-H5-APP-Mobile/"/>
     
   </entry>
   
   <entry>
     <title>firstblog</title>
-    <link href="http://cofingfishman.github.io/2016/02/21/firstblog/"/>
-    <id>http://cofingfishman.github.io/2016/02/21/firstblog/</id>
+    <link href="http://codingfishman.github.io/2016/02/21/firstblog/"/>
+    <id>http://codingfishman.github.io/2016/02/21/firstblog/</id>
     <published>2016-02-21T09:37:48.000Z</published>
     <updated>2016-02-21T12:42:46.000Z</updated>
     
@@ -85,7 +87,7 @@
     </summary>
     
     
-      <category term="日记" scheme="http://cofingfishman.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+      <category term="日记" scheme="http://codingfishman.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
     
   </entry>
   
