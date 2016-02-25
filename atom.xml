@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://codingfishman.github.io/"/>
-  <updated>2016-02-24T16:17:04.000Z</updated>
+  <updated>2016-02-25T01:09:01.000Z</updated>
   <id>http://codingfishman.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://codingfishman.github.io/2016/02/21/flex%E5%B8%83%E5%B1%80%E4%B8%8Efloat%E7%9A%84%E5%86%B2%E7%AA%81/"/>
     <id>http://codingfishman.github.io/2016/02/21/flex布局与float的冲突/</id>
     <published>2016-02-21T13:11:12.000Z</published>
-    <updated>2016-02-24T16:17:04.000Z</updated>
+    <updated>2016-02-25T01:09:01.000Z</updated>
     
     <content type="html">&lt;p&gt;2015年的某一天，我在某外企当码农，用户对浏览器的使用不像我们大天朝，因此心情上轻松了不少。有一次，我和文博同志接到了一个新网站的任务，我无意中（还是经文博的提起后？）在&lt;a href=&quot;https://css-tricks.com/snippets/css/a-guide-to-flexbox/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CSS-Tricks&lt;/a&gt;上看到了一篇关于Flexbox的入门介绍，发现这和之前接触的float+margin+padding的布局大不一样，我想，那我们就用flex布局吧！这是第一次接触并使用到Flex布局，可以说用得很浅。&lt;/p&gt;
 &lt;p&gt;在后来一次的工作中，我遇到了这样一个很普通的场景，同一行的DIV，有两块：左和右，我自然地通过 &lt;code&gt;float:right&lt;/code&gt; 来将DIV右到了右边。&lt;/p&gt;
@@ -28,6 +28,8 @@
 &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;container&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;item&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   left part&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;item right&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   right part&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;然而事情发生了转折，left-div 和 right-div 的高度是不一样的（字体大小不一样），但是在同一行上都需要居中对齐，我于是想到了flex布局。&lt;br&gt;通过 &lt;code&gt;flex:space-between&lt;/code&gt; 将元素分别漂流到了两遍，并设置 &lt;code&gt;align-items:center&lt;/code&gt; 来实现垂直居中, 示例如下：&lt;/p&gt;
 &lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.container&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;400px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;300px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; -webkit-box&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; space-between&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-webkit-box-pack&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; justify&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;jusity-content&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; space-between&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-webkit-box-align&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; center&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;align-items&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; center&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;script async src=&quot;https://jsfiddle.net/nickday/fayzaew2/11/embed/html,css,result/dark/&quot;&gt;&lt;/script&gt;
+
 &lt;p&gt;&lt;strong&gt;但是我忘记将里面的 &lt;code&gt;.right&lt;/code&gt; 样式移除&lt;/strong&gt;，而且在chrome之下，其表现是很正常的，我也以为事情完成了。&lt;/p&gt;
 &lt;p&gt;可是在后面真实的手机测试中，尤其是比较低版本系统的安卓手机(Android 4.1.1, webkit默认浏览器），我们发现&lt;strong&gt;right-part&lt;/strong&gt;这一块的DIV，直接消失了！ 经过debuggap的调试，我发现&lt;code&gt;float:right;&lt;/code&gt; 一旦拿掉，DIV就回来了。&lt;/p&gt;
 &lt;p&gt;注：邧一峰老师的flex介绍写得也很适合我们，附上链接 &lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;flex布局教程&lt;/a&gt;&lt;/p&gt;
@@ -40,7 +42,7 @@
     </summary>
     
     
-      <category term="CSS3 Mobile flex" scheme="http://codingfishman.github.io/tags/CSS3-Mobile-flex/"/>
+      <category term="CSS3 flex Mobile" scheme="http://codingfishman.github.io/tags/CSS3-flex-Mobile/"/>
     
   </entry>
   
@@ -49,7 +51,7 @@
     <link href="http://codingfishman.github.io/2016/02/21/%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E8%A7%A6%E5%B1%8F%E6%97%B6%E9%82%A3%E4%B8%80%E7%9E%AC%E9%97%B4%E7%9A%84%E8%83%8C%E6%99%AF%E8%89%B2/"/>
     <id>http://codingfishman.github.io/2016/02/21/禁用手机触屏时那一瞬间的背景色/</id>
     <published>2016-02-21T12:44:35.000Z</published>
-    <updated>2016-02-22T14:37:58.000Z</updated>
+    <updated>2016-02-24T16:26:25.000Z</updated>
     
     <content type="html">&lt;p&gt;当我们的H5页面是服务于APP的，也就是内嵌在APP里面使用时，我们总是希望H5表现得和原生APP一样。前不久，我遇到一个页面里面有很多的展开项，默认隐藏；当点击某个展开项的时候，隐藏的DIV显示出来。然而在点击展开栏的那一瞬间，浏览器总是会为该DIV的背景加上背景色，有些碍眼，出卖了他不是APP的本质。&lt;/p&gt;
 &lt;p&gt;其实这个是可以通过CSS来禁用的，老实说，真要和浏览器打交道的时候，CSS才是最懂它的那个。禁用点击时默认背景效果的代码如下：&lt;/p&gt;
@@ -65,7 +67,7 @@
     </summary>
     
     
-      <category term="CSS CSS3 H5+APP Mobile" scheme="http://codingfishman.github.io/tags/CSS-CSS3-H5-APP-Mobile/"/>
+      <category term="CSS CSS3 H5 Mobile" scheme="http://codingfishman.github.io/tags/CSS-CSS3-H5-Mobile/"/>
     
   </entry>
   
