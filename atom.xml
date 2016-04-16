@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://codingfishman.github.io/"/>
-  <updated>2016-04-10T15:14:28.000Z</updated>
+  <updated>2016-04-16T14:18:02.000Z</updated>
   <id>http://codingfishman.github.io/</id>
   
   <author>
@@ -16,11 +16,45 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>借助background-size实现漂亮的avator头像</title>
+    <link href="http://codingfishman.github.io/2016/04/16/%E5%80%9F%E5%8A%A9background-position%E5%AE%9E%E7%8E%B0%E7%BE%8E%E8%A7%82%E7%9A%84avator%E5%A4%B4%E5%83%8F/"/>
+    <id>http://codingfishman.github.io/2016/04/16/借助background-position实现美观的avator头像/</id>
+    <published>2016-04-16T12:35:26.000Z</published>
+    <updated>2016-04-16T14:18:02.000Z</updated>
+    
+    <content type="html">&lt;p&gt;可以说，但凡涉及到用户信息展示的页面，用户自定义的头像总是让人记得最深刻，我们也总在这上面花去不少心思。从正方形，到圆角，在到现在的全圆，我们的头像展示也经历着自己的演进。之前我在处理个人头像的时候，想到的总是使用一个DIV+IMG，DIV 正方形并使用50%的圆角，盖在图片IMG的上面。但是这样有一个问题，就是当图片的长宽比很大时，我们要么强行拉伸图片使其不安比例的铺满，要么就等比拉伸进而导致图片不能撑满整个圆形DIV，如果不使用JS，这似乎无解？ 哈哈，我们忽略了CSS的一个属性：&lt;strong&gt;background-size&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;相信我们在图片布局中，总是用到过最新的 &lt;code&gt;background&lt;/code&gt; 相关CSS属性，而其中的 &lt;code&gt;background-size&lt;/code&gt; 有一个很棒的属性值 &lt;em&gt;cover&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;background-size-cover&quot;&gt;&lt;a href=&quot;#background-size-cover&quot; class=&quot;headerlink&quot; title=&quot;background-size:cover&quot;&gt;&lt;/a&gt;background-size:cover&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;background-size 有多种属性值，可以直接查看&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/background-size&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MDN&lt;/a&gt;文档&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;该属性可以使图片正好铺满相应的DIV，最难得的是，它是按照&lt;em&gt;图片较小的那一边来做缩放&lt;/em&gt;的， 这是我们一直追寻的效果！&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.avator&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;100px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;100px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background-image&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;function&quot;&gt;url&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;somewhere.png&#39;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background-position&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; cover&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;喜悦归喜悦，这种方式有一个问题：如何动态设置这个背景呢？&lt;br&gt;如果是IMG标签，我们设置src就好了，对于DIV难道我们每次都生成一个div然后强制重写 style &lt;code&gt;{background-image: url(&amp;#39;new.png&amp;#39;)}&lt;/code&gt;? 如果是以前我也觉得这样写很变扭，但是接触了react一阵子，这种方式看起来还蛮正常的。。=_=。&lt;/p&gt;
+&lt;h2 id=&quot;React-中比较“自然”的实现&quot;&gt;&lt;a href=&quot;#React-中比较“自然”的实现&quot; class=&quot;headerlink&quot; title=&quot;React 中比较“自然”的实现&quot;&gt;&lt;/a&gt;React 中比较“自然”的实现&lt;/h2&gt;&lt;p&gt;React中会出现很多的直接将style写入component里面去的地方，这样的好处不少，比如可以独立的发布，更快的渲染速度。按照这种模式，&lt;code&gt;style&lt;/code&gt; 样式其实和普通的JS一样，是可编程的！这就为我们动态设置 &lt;code&gt;background-image&lt;/code&gt; 打开了大门。&lt;/p&gt;
+&lt;p&gt;实现如下：&lt;/p&gt;
+&lt;script async src=&quot;https://jsfiddle.net/nickday/ogu4jmqb/6/embed/js,html,result/&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;background-position:center&lt;/strong&gt;&lt;br&gt;针对长度大于宽度，或者宽度大于长度的照片，&lt;code&gt;background-size:cover&lt;/code&gt; 都可以帮我们很好的布局。值得注意的是，这里面还有一个属性 &lt;code&gt;background-position:center&lt;/code&gt;, 没有它的话，图片是从左向右，从上到下放置的，有了center后，布局才算美好。&lt;/p&gt;
+&lt;h2 id=&quot;后话&quot;&gt;&lt;a href=&quot;#后话&quot; class=&quot;headerlink&quot; title=&quot;后话&quot;&gt;&lt;/a&gt;后话&lt;/h2&gt;&lt;p&gt;通过 &lt;code&gt;background-size:cover&lt;/code&gt; 不只是可以生成圆形图片，实际上，任何需要这种铺满的效果都可以用到它。当然考虑到兼容性，它对IE8是无效的;)&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;可以说，但凡涉及到用户信息展示的页面，用户自定义的头像总是让人记得最深刻，我们也总在这上面花去不少心思。从正方形，到圆角，在到现在的全圆，我们的头像展示也经历着自己的演进。之前我在处理个人头像的时候，想到的总是使用一个DIV+IMG，DIV 正方形并使用50%的圆角，盖在图
+    
+    </summary>
+    
+    
+      <category term="CSS React" scheme="http://codingfishman.github.io/tags/CSS-React/"/>
+    
+  </entry>
+  
+  <entry>
     <title>React PropTypes 到底有多少类型</title>
     <link href="http://codingfishman.github.io/2016/03/30/React_PropTypes_%E7%B1%BB%E5%9E%8B%E7%AC%94%E8%AE%B0/"/>
     <id>http://codingfishman.github.io/2016/03/30/React_PropTypes_类型笔记/</id>
     <published>2016-03-30T09:55:49.000Z</published>
-    <updated>2016-04-10T15:14:28.000Z</updated>
+    <updated>2016-04-10T15:15:57.000Z</updated>
     
     <content type="html">&lt;p&gt;经常遇到需要PropTypes验证的时候，忘记了这个值该是什么，不得不去查一遍&lt;a href=&quot;https://facebook.github.io/react/docs/reusable-components.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;React官网&lt;/a&gt;，我想还是先记下来好了。所有属性都遵从驼峰命名，因此如果只有一个单词，那么他就是小写的。&lt;/p&gt;
 &lt;h4 id=&quot;布尔值-bool&quot;&gt;&lt;a href=&quot;#布尔值-bool&quot; class=&quot;headerlink&quot; title=&quot;布尔值 bool&quot;&gt;&lt;/a&gt;布尔值 bool&lt;/h4&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;bool: PropTypes.bool&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
