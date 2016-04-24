@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://codingfishman.github.io/"/>
-  <updated>2016-04-18T07:26:57.000Z</updated>
+  <updated>2016-04-24T15:28:15.000Z</updated>
   <id>http://codingfishman.github.io/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于最基本的float+overflow实现calc的CSS效果</title>
+    <link href="http://codingfishman.github.io/2016/04/24/%E5%9F%BA%E4%BA%8E%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%9A%84float-overflow%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%B8%83%E5%B1%80/"/>
+    <id>http://codingfishman.github.io/2016/04/24/基于最基本的float-overflow实现动态布局/</id>
+    <published>2016-04-24T14:31:47.000Z</published>
+    <updated>2016-04-24T15:28:15.000Z</updated>
+    
+    <content type="html">&lt;p&gt;CALC() 是一种正在试验阶段的CSS属性（刚才查了一下，在PC上的支持其实还不错，但是手机端的支持还不好），而且是CSS中比较少的可以在运行时计算的属性值,通过它我们可以实现这种效果：左右布局，左边固定，右边自动铺满。只是限于其支持度我们总是不敢完全放心的使用它。前不久在360的奇舞周刊公众号看看到一篇文章，&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzA4NjE3MDg4OQ==&amp;amp;mid=403391330&amp;amp;idx=1&amp;amp;sn=dc2e5c44abc0727dc1d3f64b23f1663a&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;传送门&lt;/a&gt;，作者(&lt;em&gt;瓜瓜&lt;/em&gt;) 介绍了BFC（块式布局上下文）， 并总结了BFC的几条原则，不多，但是有一条可以帮助我们实现很多情况下&lt;em&gt;calc&lt;/em&gt;才能办到的效果。&lt;/p&gt;
+&lt;p&gt;她总结下来BFC规则包含如下（&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzA4NjE3MDg4OQ==&amp;amp;mid=403391330&amp;amp;idx=1&amp;amp;sn=dc2e5c44abc0727dc1d3f64b23f1663a&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文&lt;/a&gt;更有相关示例，推荐前往阅读）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内部的Box会在垂直方向，一个接一个地放置。&lt;/li&gt;
+&lt;li&gt;Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠&lt;/li&gt;
+&lt;li&gt;每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。&lt;/li&gt;
+&lt;li&gt;BFC的区域不会与float box重叠。&lt;/li&gt;
+&lt;li&gt;BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。&lt;/li&gt;
+&lt;li&gt;计算BFC的高度时，浮动元素也参与计算&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;之前我们总是使用的&lt;code&gt;overflow:hidden&lt;/code&gt;来包裹浮动元素的高度，其实就是利用了BFC的规范&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;计算BFC的高度时，浮动元素也参与计算&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;而且里面提到了一条规则可以直接&lt;strong&gt;实现前面场景下的calc效果&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;BFC的区域不会与float box重叠。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这句话本来没什么，但是这里面的&lt;em&gt;BFC区域不换行&lt;/em&gt;，同时他又不会与float区域重叠，这实际上就是我们前面想要的效果：左边固定宽度，右边铺满全屏，所需代码很少，如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.slide&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;120px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;300px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;float&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; left&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;hexcolor&quot;&gt;#f66&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.main&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;hexcolor&quot;&gt;#fcc&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;500px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;slide&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;main&quot;&lt;/span&gt; &amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;JsFiddler示例：&lt;/p&gt;
+&lt;script async src=&quot;https://jsfiddle.net/nickday/rowbnzdg/embed/html,css,result/dark/&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;修改浏览器大小，大家会发现，右边的区域会自动伸缩，但是却不会越过左边。而且，他们会一直顶部平行。谢谢奇舞团的这篇介绍：）&lt;/p&gt;
+&lt;p&gt;第一次意识这个规则并联想到它可能的用处时，自己着实惊了一下。也瞬间觉得，无论是CSS魔法哥，还是其他前辈大神，他们的厉害并不是莫名其妙的事情，在厉害的背后必然充满了思考，充满了学习。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;CALC() 是一种正在试验阶段的CSS属性（刚才查了一下，在PC上的支持其实还不错，但是手机端的支持还不好），而且是CSS中比较少的可以在运行时计算的属性值,通过它我们可以实现这种效果：左右布局，左边固定，右边自动铺满。只是限于其支持度我们总是不敢完全放心的使用它。前不久
+    
+    </summary>
+    
+    
+      <category term="CSS BFC" scheme="http://codingfishman.github.io/tags/CSS-BFC/"/>
+    
+  </entry>
   
   <entry>
     <title>借助background-size实现漂亮的avator头像</title>
