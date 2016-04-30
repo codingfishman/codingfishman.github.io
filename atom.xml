@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://codingfishman.github.io/"/>
-  <updated>2016-04-24T15:28:15.000Z</updated>
+  <updated>2016-04-30T07:42:23.000Z</updated>
   <id>http://codingfishman.github.io/</id>
   
   <author>
@@ -16,11 +16,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>NGINX add_header 在try_files中不生效</title>
+    <link href="http://codingfishman.github.io/2016/04/30/NINGX-try-files-And-add-header/"/>
+    <id>http://codingfishman.github.io/2016/04/30/NINGX-try-files-And-add-header/</id>
+    <published>2016-04-30T06:55:06.000Z</published>
+    <updated>2016-04-30T07:42:23.000Z</updated>
+    
+    <content type="html">&lt;p&gt;由于项目是单页面应用，整个项目的JS文件其实包含了绝大部分的功能。项目发布时，会对文件名进行MD5重命名，因此以为缓存问题已被解决。但是在实际运行中，却发现总有发生没有请求最新文件的情况。那不就是项目的入口index.html被缓存了呗，得咱配置一个&lt;code&gt;cache-control nocache&lt;/code&gt;吧！于是我GET到了一个新知识，因为这里面有误区。&lt;/p&gt;
+&lt;h2 id=&quot;NGINX基本配置&quot;&gt;&lt;a href=&quot;#NGINX基本配置&quot; class=&quot;headerlink&quot; title=&quot;NGINX基本配置&quot;&gt;&lt;/a&gt;NGINX基本配置&lt;/h2&gt;&lt;p&gt;所有以 &lt;em&gt;/mobile/&lt;/em&gt; 开始的URL请求都会被定向到 &lt;em&gt;mobile.html&lt;/em&gt; 文件，由其进行路由映射。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;## server中已经指定root的path如下&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# root /path/project/dist&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;location ^~ / &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  access_&lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt; off;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  expires &lt;span class=&quot;number&quot;&gt;30&lt;/span&gt;d;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;location ^~ /mobile/ &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  try_files &lt;span class=&quot;variable&quot;&gt;$uri&lt;/span&gt;&lt;span class=&quot;variable&quot;&gt;$args&lt;/span&gt; /mobile.html;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;配置Cache-Control-解决mobile-html的缓存问题&quot;&gt;&lt;a href=&quot;#配置Cache-Control-解决mobile-html的缓存问题&quot; class=&quot;headerlink&quot; title=&quot;配置Cache-Control 解决mobile.html的缓存问题&quot;&gt;&lt;/a&gt;配置Cache-Control 解决mobile.html的缓存问题&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;location ^~ /mobile/ &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  add_header Cache-Control no-cache;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  try_files &lt;span class=&quot;variable&quot;&gt;$uri&lt;/span&gt;&lt;span class=&quot;variable&quot;&gt;$args&lt;/span&gt; /mobile.html;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然而浏览器查看response-header, &lt;em&gt;Cache-Control:max-age=2592000&lt;/em&gt; 仍然在里面，也就是说Cache-Control没生效&lt;/p&gt;
+&lt;h2 id=&quot;try-file会导致前面配置的-add-header-直接丢失&quot;&gt;&lt;a href=&quot;#try-file会导致前面配置的-add-header-直接丢失&quot; class=&quot;headerlink&quot; title=&quot;try_file会导致前面配置的 add_header 直接丢失&quot;&gt;&lt;/a&gt;try_file会导致前面配置的 add_header 直接丢失&lt;/h2&gt;&lt;p&gt;我开始怀疑是不是 &lt;em&gt;Cache-Control&lt;/em&gt; 与 &lt;em&gt;try_files&lt;/em&gt; 不搭？但是没有搜索到相关资料，那么是 &lt;em&gt;add_header&lt;/em&gt; 和 &lt;em&gt;try_files&lt;/em&gt; 不搭？确实，&lt;em&gt;try_files&lt;/em&gt;匹配后，会直接进入匹配的location中的配置，我们在这里配置的都会被丢弃，&lt;a href=&quot;http://serverfault.com/questions/538890/nginx-expires-header-not-working&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ServerFault&lt;/a&gt;，也就是说我们要把这一段配置到 &lt;code&gt;/mobile.html&lt;/code&gt; 中去：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;location = /mobile.html &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  add_header Cache-Control no-cache;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;location ^~ /mobile/ &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  try_files &lt;span class=&quot;variable&quot;&gt;$uri&lt;/span&gt;&lt;span class=&quot;variable&quot;&gt;$args&lt;/span&gt; /mobile.html;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这样，只会对&lt;em&gt;mobile.html&lt;/em&gt;这个文件禁用缓存，其他的静态资源还是会被缓存起来，我们的目的达到了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由于项目是单页面应用，整个项目的JS文件其实包含了绝大部分的功能。项目发布时，会对文件名进行MD5重命名，因此以为缓存问题已被解决。但是在实际运行中，却发现总有发生没有请求最新文件的情况。那不就是项目的入口index.html被缓存了呗，得咱配置一个&lt;code&gt;cache-
+    
+    </summary>
+    
+    
+      <category term="NGINX" scheme="http://codingfishman.github.io/tags/NGINX/"/>
+    
+  </entry>
+  
+  <entry>
     <title>基于最基本的float+overflow实现calc的CSS效果</title>
     <link href="http://codingfishman.github.io/2016/04/24/%E5%9F%BA%E4%BA%8E%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%9A%84float-overflow%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%B8%83%E5%B1%80/"/>
     <id>http://codingfishman.github.io/2016/04/24/基于最基本的float-overflow实现动态布局/</id>
     <published>2016-04-24T14:31:47.000Z</published>
-    <updated>2016-04-24T15:28:15.000Z</updated>
+    <updated>2016-04-24T15:29:49.000Z</updated>
     
     <content type="html">&lt;p&gt;CALC() 是一种正在试验阶段的CSS属性（刚才查了一下，在PC上的支持其实还不错，但是手机端的支持还不好），而且是CSS中比较少的可以在运行时计算的属性值,通过它我们可以实现这种效果：左右布局，左边固定，右边自动铺满。只是限于其支持度我们总是不敢完全放心的使用它。前不久在360的奇舞周刊公众号看看到一篇文章，&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzA4NjE3MDg4OQ==&amp;amp;mid=403391330&amp;amp;idx=1&amp;amp;sn=dc2e5c44abc0727dc1d3f64b23f1663a&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;传送门&lt;/a&gt;，作者(&lt;em&gt;瓜瓜&lt;/em&gt;) 介绍了BFC（块式布局上下文）， 并总结了BFC的几条原则，不多，但是有一条可以帮助我们实现很多情况下&lt;em&gt;calc&lt;/em&gt;才能办到的效果。&lt;/p&gt;
 &lt;p&gt;她总结下来BFC规则包含如下（&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzA4NjE3MDg4OQ==&amp;amp;mid=403391330&amp;amp;idx=1&amp;amp;sn=dc2e5c44abc0727dc1d3f64b23f1663a&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文&lt;/a&gt;更有相关示例，推荐前往阅读）&lt;/p&gt;
