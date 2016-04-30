@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://codingfishman.github.io/"/>
-  <updated>2016-04-30T09:28:08.000Z</updated>
+  <updated>2016-04-30T09:33:26.000Z</updated>
   <id>http://codingfishman.github.io/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>JS本地化的尝试</title>
-    <link href="http://codingfishman.github.io/2016/04/30/JS%E6%9C%AC%E5%9C%B0%E5%8C%96/"/>
-    <id>http://codingfishman.github.io/2016/04/30/JS本地化/</id>
+    <link href="http://codingfishman.github.io/2016/04/30/JS%E6%9C%AC%E5%9C%B0%E5%8C%96%E7%9A%84%E5%B0%9D%E8%AF%95/"/>
+    <id>http://codingfishman.github.io/2016/04/30/JS本地化的尝试/</id>
     <published>2016-04-30T08:28:16.000Z</published>
-    <updated>2016-04-30T09:28:08.000Z</updated>
+    <updated>2016-04-30T09:33:26.000Z</updated>
     
     <content type="html">&lt;p&gt;还记得去年在百姓网组织的一次meetup上，听到过sofish分享了饿了么前端的一些架构，当时印象最深的是proxy_pass解决跨域问题，只听过词汇却不知道是什么意思。后来大量依赖NGINX，proxy_pass已经可以说是用得最多的一个配置了。还记得当时他们提到了请求合并、JS本地化，觉得实为厉害，但一直都没有机会实践。前不久突然想到我们的前端项目，尤其是通过APP加载的H5工程，应该很适合做本地化，于是也实践了一下。&lt;/p&gt;
 &lt;h2 id=&quot;基本原理&quot;&gt;&lt;a href=&quot;#基本原理&quot; class=&quot;headerlink&quot; title=&quot;基本原理&quot;&gt;&lt;/a&gt;基本原理&lt;/h2&gt;&lt;p&gt;通过将JS首次访问时缓存在localstorage中，后续的再次访问都从localstorage中读取js文件，也就不用再下载这个JS了（一般也是整个工程中最大的文件）。同时，当我们服务器端的js有改动更新时，我们也需要更新该缓存中的JS文件。&lt;/p&gt;
