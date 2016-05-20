@@ -227,8 +227,8 @@ a:focus {
         display: inline;
         margin: 0 5px;
         padding: 1px 5px;
-        border: 1px solid #ccc;
-        background: #eee; }
+        background: rgba(0, 0, 0, 0.06);
+        border-radius: 3px; }
       .post .post-content p a {
         color: #01579f;
         padding-bottom: 2px;
