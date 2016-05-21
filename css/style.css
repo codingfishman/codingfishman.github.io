@@ -8,7 +8,7 @@
 body {
   background-color: #FFF;
   color: #444;
-  font-family: "TIBch", "Classic Grotesque W01", "Helvetica Neue", Arial, "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-family: "PingFangSC-Light", Roboto, "TIBch", "Classic Grotesque W01", "Helvetica Neue", Arial, "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px; }
@@ -156,9 +156,9 @@ a:focus {
     margin: 0;
     color: #555;
     text-align: left;
-    font: bold 25px/1.1 "ff-tisa-web-pro", Cambria, "Times New Roman", Georgia, Times, sans-serif; }
-    .post .post-title a {
-      color: #555; }
+    font: bold 25px/1.1 "ff-tisa-web-pro", Cambria, "Times New Roman", Georgia, Times, sans-serif;
+    font-family: "PingFangSC-Light", Roboto, sans-serif, Helvetica a;
+      font-family-color: #555; }
   .post .post-meta {
     padding: 0;
     margin: 15px 0 0;
@@ -208,7 +208,7 @@ a:focus {
     clear: left;
     font-size: 15px;
     line-height: 1.77;
-    color: #444;
+    color: #2c3f51;
     padding-top: 15px;
     text-align: justify;
     text-justify: distribute;
@@ -365,9 +365,12 @@ blockquote, .stressed {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 2.5em 0;
-  padding: 0 0 0 50px;
-  color: #555;
-  border-left: none; }
+  padding: 15px 15px 1px 50px;
+  color: #2c3f51;
+  border-left: 5px solid rgba(102, 128, 153, 0.075);
+  background-color: rgba(102, 128, 153, 0.05);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; }
 
 blockquote:before, .stressed-quote:before {
   content: "\201C";
@@ -375,10 +378,10 @@ blockquote:before, .stressed-quote:before {
   font-family: times;
   font-style: normal;
   font-size: 48px;
-  color: #444;
+  color: #bbb;
   font-weight: bold;
   line-height: 30px;
-  margin-left: -50px;
+  margin-left: -40px;
   position: absolute; }
 
 strong, b, em {
