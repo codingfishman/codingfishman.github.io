@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://codingfishman.github.io/"/>
-  <updated>2016-05-20T04:03:47.000Z</updated>
+  <updated>2016-05-21T07:03:31.000Z</updated>
   <id>http://codingfishman.github.io/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我们经常看到的&quot;!!obj&quot;</title>
+    <link href="http://codingfishman.github.io/2016/05/21/%E6%88%91%E4%BB%AC%E7%BB%8F%E5%B8%B8%E7%9C%8B%E5%88%B0%E7%9A%84%22!!obj%22/"/>
+    <id>http://codingfishman.github.io/2016/05/21/我们经常看到的"!!obj"/</id>
+    <published>2016-05-21T05:56:15.000Z</published>
+    <updated>2016-05-21T07:03:31.000Z</updated>
+    
+    <content type="html">&lt;p&gt;相信大家在偶尔看到一些库的源码时，总是能看到这样一句语法&lt;code&gt;a === true &amp;amp;&amp;amp; !!obj;&lt;/code&gt;, 是的，这里面用了&lt;strong&gt;!!obj&lt;/strong&gt; 这样一个运算符。我们不禁好奇，这样做的结果不就是等于什么都没做吗？最近在看老姚的&lt;a href=&quot;http://www.w3cfuns.com/notes/17398/1762c504ef3b9487a1f2873e8b89c188.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《underscore源码解析》&lt;/a&gt;恰好也有这么一段，作者做了解释，我自己也求证了一下。&lt;/p&gt;
+&lt;h1 id=&quot;isObject-方法&quot;&gt;&lt;a href=&quot;#isObject-方法&quot; class=&quot;headerlink&quot; title=&quot;_.isObject()方法&quot;&gt;&lt;/a&gt;_.isObject()方法&lt;/h1&gt;&lt;p&gt;源码如下&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;_.isObject = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;obj&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; type = &lt;span class=&quot;keyword&quot;&gt;typeof&lt;/span&gt; obj;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; type === &lt;span class=&quot;string&quot;&gt;&#39;function&#39;&lt;/span&gt; || type === &lt;span class=&quot;string&quot;&gt;&#39;object&#39;&lt;/span&gt; &amp;amp;&amp;amp; !!obj;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以看到，如果 &lt;code&gt;typeof&lt;/code&gt; 的值为&lt;em&gt;‘function’&lt;/em&gt;则直接返回&lt;code&gt;true&lt;/code&gt;, 否则返回&lt;em&gt;是否是object&lt;/em&gt;。 但是其实多做了一步，作者解释是为了避免null的值。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;后面的!!obj是拿到obj的布尔值。目的是为了排除null。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;obj-返回了什么&quot;&gt;&lt;a href=&quot;#obj-返回了什么&quot; class=&quot;headerlink&quot; title=&quot;!!obj 返回了什么&quot;&gt;&lt;/a&gt;!!obj 返回了什么&lt;/h1&gt;&lt;p&gt;我们申明简单的对象，以及空对象，可以直接看到这段表达式返回了什么&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 正常对象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; normalObj = &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(!normalObj) &lt;span class=&quot;comment&quot;&gt;// false&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(!!normalObj) &lt;span class=&quot;comment&quot;&gt;// ture&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(!&lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;// true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(!!&lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;// false&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;对于正常的非空对象，返回&lt;code&gt;true&lt;/code&gt;，对于null则返回&lt;code&gt;false&lt;/code&gt;。But wait!!, 这有啥用？难道我们平时不是直接 &lt;code&gt;if(type === &amp;#39;object&amp;#39; &amp;amp;&amp;amp; obj) {}&lt;/code&gt; 就可以了吗？&lt;/p&gt;
+&lt;h1 id=&quot;obj-为什么要这么写&quot;&gt;&lt;a href=&quot;#obj-为什么要这么写&quot; class=&quot;headerlink&quot; title=&quot;!!obj 为什么要这么写&quot;&gt;&lt;/a&gt;!!obj 为什么要这么写&lt;/h1&gt;&lt;p&gt;其实作者有举一个例子说明：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;number&quot;&gt;20&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;number&quot;&gt;30&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;The result is ture&#39;&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;// 会执行&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;此处 if语句的返回结果显然是true, 但是 &lt;code&gt;20 &amp;amp;&amp;amp; 30&lt;/code&gt; 的返回结果其实是&lt;em&gt;30&lt;/em&gt;（同理， &lt;code&gt;20||30&lt;/code&gt;返回&lt;em&gt;20&lt;/em&gt;), 之所以返回了true是因为&lt;code&gt;if&lt;/code&gt;语句进行的类型转换。&lt;/p&gt;
+&lt;p&gt;对于不在if语句以内的表达式，如果我们也需要返回bool值呢？是的这时候&lt;code&gt;!!obj&lt;/code&gt;就派上了用场,他返回的是bool值，而且恰好和我们需求中的&lt;em&gt;是否为null&lt;/em&gt;对应了起来。&lt;/p&gt;
+&lt;p&gt;因此 &lt;code&gt;!!&lt;/code&gt; 并没有什么特殊的功能，他就是做了两次&lt;strong&gt;非&lt;/strong&gt;运算，然后返回了运算的结果， &lt;code&gt;true&lt;/code&gt; 或者 &lt;code&gt;false&lt;/code&gt;。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;相信大家在偶尔看到一些库的源码时，总是能看到这样一句语法&lt;code&gt;a === true &amp;amp;&amp;amp; !!obj;&lt;/code&gt;, 是的，这里面用了&lt;strong&gt;!!obj&lt;/strong&gt; 这样一个运算符。我们不禁好奇，这样做的结果不就是等于什么都没做吗？最近
+    
+    </summary>
+    
+    
+      <category term="Javascript" scheme="http://codingfishman.github.io/tags/Javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>Prerender预渲染优化SEO</title>
@@ -102,7 +137,7 @@
     <link href="http://codingfishman.github.io/2016/04/30/NINGX-try-files-And-add-header/"/>
     <id>http://codingfishman.github.io/2016/04/30/NINGX-try-files-And-add-header/</id>
     <published>2016-04-30T06:55:06.000Z</published>
-    <updated>2016-05-20T04:02:34.000Z</updated>
+    <updated>2016-05-20T04:02:35.000Z</updated>
     
     <content type="html">&lt;p&gt;由于项目是单页面应用，整个项目的JS文件其实包含了绝大部分的功能。项目发布时，会对文件名进行MD5重命名，因此以为缓存问题已被解决。但是在实际运行中，却发现总有发生没有请求最新文件的情况。那不就是项目的入口index.html被缓存了呗，得咱配置一个&lt;code&gt;cache-control nocache&lt;/code&gt;吧！于是我GET到了一个新知识，因为这里面有误区。&lt;/p&gt;
 &lt;h2 id=&quot;NGINX基本配置&quot;&gt;&lt;a href=&quot;#NGINX基本配置&quot; class=&quot;headerlink&quot; title=&quot;NGINX基本配置&quot;&gt;&lt;/a&gt;NGINX基本配置&lt;/h2&gt;&lt;p&gt;所有以 &lt;em&gt;/mobile/&lt;/em&gt; 开始的URL请求都会被定向到 &lt;em&gt;mobile.html&lt;/em&gt; 文件，由其进行路由映射。&lt;/p&gt;
