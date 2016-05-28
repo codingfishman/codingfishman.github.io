@@ -56,7 +56,7 @@
     <link href="http://codingfishman.github.io/2016/05/21/%E6%88%91%E4%BB%AC%E7%BB%8F%E5%B8%B8%E7%9C%8B%E5%88%B0%E7%9A%84%22!!obj%22/"/>
     <id>http://codingfishman.github.io/2016/05/21/我们经常看到的"!!obj"/</id>
     <published>2016-05-21T05:56:15.000Z</published>
-    <updated>2016-05-21T07:03:31.000Z</updated>
+    <updated>2016-05-28T05:29:48.000Z</updated>
     
     <content type="html">&lt;p&gt;相信大家在偶尔看到一些库的源码时，总是能看到这样一句语法&lt;code&gt;a === true &amp;amp;&amp;amp; !!obj;&lt;/code&gt;, 是的，这里面用了&lt;strong&gt;!!obj&lt;/strong&gt; 这样一个运算符。我们不禁好奇，这样做的结果不就是等于什么都没做吗？最近在看老姚的&lt;a href=&quot;http://www.w3cfuns.com/notes/17398/1762c504ef3b9487a1f2873e8b89c188.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《underscore源码解析》&lt;/a&gt;恰好也有这么一段，作者做了解释，我自己也求证了一下。&lt;/p&gt;
 &lt;h1 id=&quot;isObject-方法&quot;&gt;&lt;a href=&quot;#isObject-方法&quot; class=&quot;headerlink&quot; title=&quot;_.isObject()方法&quot;&gt;&lt;/a&gt;_.isObject()方法&lt;/h1&gt;&lt;p&gt;源码如下&lt;/p&gt;
@@ -70,7 +70,7 @@
 &lt;p&gt;对于正常的非空对象，返回&lt;code&gt;true&lt;/code&gt;，对于null则返回&lt;code&gt;false&lt;/code&gt;。But wait!!, 这有啥用？难道我们平时不是直接 &lt;code&gt;if(type === &amp;#39;object&amp;#39; &amp;amp;&amp;amp; obj) {}&lt;/code&gt; 就可以了吗？&lt;/p&gt;
 &lt;h1 id=&quot;obj-为什么要这么写&quot;&gt;&lt;a href=&quot;#obj-为什么要这么写&quot; class=&quot;headerlink&quot; title=&quot;!!obj 为什么要这么写&quot;&gt;&lt;/a&gt;!!obj 为什么要这么写&lt;/h1&gt;&lt;p&gt;其实作者有举一个例子说明：&lt;/p&gt;
 &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;number&quot;&gt;20&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;number&quot;&gt;30&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;The result is ture&#39;&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;// 会执行&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;此处 if语句的返回结果显然是true, 但是 &lt;code&gt;20 &amp;amp;&amp;amp; 30&lt;/code&gt; 的返回结果其实是&lt;em&gt;30&lt;/em&gt;（同理， &lt;code&gt;20||30&lt;/code&gt;返回&lt;em&gt;20&lt;/em&gt;), 之所以返回了true是因为&lt;code&gt;if&lt;/code&gt;语句进行的类型转换。&lt;/p&gt;
+&lt;p&gt;此处 if语句的返回结果显然是true, 但是 &lt;code&gt;20 &amp;amp;&amp;amp; 30&lt;/code&gt; 的返回结果其实是&lt;em&gt;30&lt;/em&gt;（因为会读取最后一个的值，故而 &lt;code&gt;20 &amp;amp;&amp;amp; 30 &amp;amp;&amp;amp; 10&lt;/code&gt;会返回&lt;em&gt;10&lt;/em&gt;。同理，&lt;code&gt;20 || 30 || 10&lt;/code&gt;会返回 &lt;em&gt;20&lt;/em&gt;）, 之所以返回了true是因为&lt;code&gt;if&lt;/code&gt;语句进行的类型转换。&lt;/p&gt;
 &lt;p&gt;对于不在if语句以内的表达式，如果我们也需要返回bool值呢？是的这时候&lt;code&gt;!!obj&lt;/code&gt;就派上了用场,他返回的是bool值，而且恰好和我们需求中的&lt;em&gt;是否为null&lt;/em&gt;对应了起来。&lt;/p&gt;
 &lt;p&gt;因此 &lt;code&gt;!!&lt;/code&gt; 并没有什么特殊的功能，他就是做了两次&lt;strong&gt;非&lt;/strong&gt;运算，然后返回了运算的结果， &lt;code&gt;true&lt;/code&gt; 或者 &lt;code&gt;false&lt;/code&gt;。&lt;/p&gt;
 </content>
