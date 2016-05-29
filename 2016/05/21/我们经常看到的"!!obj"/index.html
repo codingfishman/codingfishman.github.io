@@ -13,7 +13,7 @@
 <p>此处 if语句的返回结果显然是true, 但是 <code>20 &amp;&amp; 30</code> 的返回结果其实是<em>30</em>（因为会读取最后一个的值，故而 <code>20 &amp;&amp; 30 &amp;&amp; 10</code>会返回<em>10</em>。同理，<code>20 || 30 || 10</code>会返回 <em>20</em>）, 之所以返回了true是因为<code>if</code>语句进行的类型转换。</p>
 <p>对于不在if语句以内的表达式，如果我们也需要返回bool值呢？是的这时候<code>!!obj</code>就派上了用场,他返回的是bool值，而且恰好和我们需求中的<em>是否为null</em>对应了起来。</p>
 <p>因此 <code>!!</code> 并没有什么特殊的功能，他就是做了两次<strong>非</strong>运算，然后返回了运算的结果， <code>true</code> 或者 <code>false</code>。</p>
-</div><a data-url="http://codingfishman.github.io/2016/05/21/我们经常看到的&quot;!!obj&quot;/" data-id="ciosbu7ew000avd2qqthpuw17" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Javascript/">Javascript</a></div><div class="post-nav"><a href="/2016/05/21/flex布局当overflow时无法滑动到顶部/" class="pre">flex布局当overflow时无法滑动到顶部</a><a href="/2016/05/06/prerender预渲染优化SEO/" class="next">Prerender预渲染优化SEO</a></div><div id="disqus_thread"><script>var disqus_shortname = 'codingfishman';
+</div><a data-url="http://codingfishman.github.io/2016/05/21/我们经常看到的&quot;!!obj&quot;/" data-id="ciosdeq42000a4h2q5koxq53q" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Javascript/">Javascript</a></div><div class="post-nav"><a href="/2016/05/21/flex布局当overflow时无法滑动到顶部/" class="pre">flex布局当overflow时无法滑动到顶部</a><a href="/2016/05/06/prerender预渲染优化SEO/" class="next">Prerender预渲染优化SEO</a></div><div id="disqus_thread"><script>var disqus_shortname = 'codingfishman';
 var disqus_identifier = '2016/05/21/我们经常看到的&quot;!!obj&quot;/';
 var disqus_title = '我们经常看到的&quot;!!obj&quot;';
 var disqus_url = 'http://codingfishman.github.io/2016/05/21/我们经常看到的&quot;!!obj&quot;/';

@@ -17,15 +17,15 @@
 </blockquote>
 <p>函数申明会直接申明一个可调用的函数，其函数名就是申明时的函数名。同时函数申明具有变量提升的效果，故而我们可以在函数申明的前面，直接调用该函数变量。函数申明还是比较单纯的。</p>
 <h1 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h1><blockquote>
-<p>在周爱民老师的《JAVASCRIPT语言精髓与编程实践》一书中，这样定义“表达式”和“程序”：<br>表达式：有运算符和操作符构成，并产生运算结果的语法结构。如果 <code>1+2+3</code> 就是一个表达式，他会返回6。<br>程序：程序是由语句构成的，语句则是由“;（分号，有时候可以省略）”分隔的句子或命令。在表达式后面加上”;”分隔符，则该表达式就是表达式语句。</p>
+<p>在周爱民老师的《JAVASCRIPT语言精髓与编程实践》一书中，这样定义“表达式”和“程序”：<br>表达式：有运算符和操作符构成，并产生运算结果的语法结构。比如 <code>1+2+3</code> 就是一个表达式，他会返回6。<br>程序：程序是由语句构成的，语句则是由“;（分号，有时候可以省略）”分隔的句子或命令。在表达式后面加上”;”分隔符，则该表达式就是表达式语句。</p>
 </blockquote>
 <p>简单地说，<code>var func = function () {}</code> 就是一个最常见的函数表达式，他与函数申明有如下区别：</p>
 <ol>
-<li>他是整个“表达式”一部分，而不是独立存在的。比如示例中，该function 及后面的语句，整体都是赋值运算符<code>=</code>中的<em>值</em>，完成这整个赋值运算符的整个过程就是”表达式“在发挥作用</li>
+<li>他是整个“赋值表达式”一部分，而不是独立存在的。比如示例中，该function 及后面的语句，整体都是赋值运算符<code>=</code>中的<em>值</em>，完成这整个赋值运算符的整个过程就是”赋值表达式“在发挥作用</li>
 <li>他可以省略函数名，比如创建匿名函数</li>
 </ol>
 <blockquote>
-<p>还记得我们前面Promise例子中的 <code>function success(){}</code> 及 <code>function failed(){}</code> 吗？我们在这里的定义中也为他们加上了函数名 success 和 failed, 但是他们的实际意义其实就是在源码中给我们看的。。从JS效果上来说，他们与匿名函数没有任何区别，其函数名其实会被直接忽略。我们可以以一个简单的例子求证：</p>
+<p>还记得我们前面Promise例子中的 <code>function success(){}</code> 及 <code>function failed(){}</code> 吗？我们在这里的定义中也为他们加上了函数名 success 和 failed, 但是他们的实际意义其实就是在源码中给我们看的。。从JS效果上来说，他们与匿名函数没有任何区别，其函数名其实会被直接忽略。我们可以通过一个简单的例子求证：</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func1 = <span class="function"><span class="keyword">function</span> <span class="title">func</span> (<span class="params"></span>) </span>&#123;<span class="built_in">console</span>.info(<span class="string">'Here is the func body'</span>)&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输入： 'Here is the func body'</span></span><br><span class="line">func1()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 异常： Uncaught ReferenceError: func is not defined</span></span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -38,7 +38,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例1 函数申明</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">func1()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例2  匿名函数，即函数表达式，通过引用来调用</span></span><br><span class="line"><span class="keyword">var</span> func2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">func2()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例3  匿名函数，但没有引用(1)</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例4  匿名函数，但没有引用(2)。和文章开始的困惑示例一样</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例5  匿名函数，但没有引用(3)</span></span><br><span class="line"><span class="keyword">void</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
 <p>示例1和示例2都是我们最常用的函数定义和调用方式，就不再细叙。我就按照书本里的内容直白地解释一下示例3、4、5。</p>
 <blockquote>
-<p>在这之前，我们需要知道： <code>()</code>当不用做函数调用时，也具有强制语句执行的效果，也就是可以把它包裹的内容当做表达式来执行。他也是一种运算符，书里称之为“优先级运算符”</p>
+<p>在这之前，我们需要知道： <code>()</code>当不用做函数调用时，也具有强制语句执行的效果，也就是可以把它包裹的内容当做表达式来执行。他也是一种运算符，书里称之为“优先级运算符”。</p>
 </blockquote>
 <h4 id="示例3"><a href="#示例3" class="headerlink" title="示例3"></a><code>示例3</code></h4><p>通过最外面的 <code>()</code> 强制执行了一次<em>函数调用运算</em>，该运算同时也执行了匿名函数（函数表达式）的定义，返回函数引用，故而后面的函数调用得以成功。</p>
 <h4 id="示例4"><a href="#示例4" class="headerlink" title="示例4"></a><code>示例4</code></h4><p>首先借助 <code>()</code> 使得匿名函数（函数表达式）执行，由于该表达式是括号内唯一的也是最后的一个表达式，因此其值得以返回<em>(即匿名函数的引用)</em>, 然后后面的 <code>()</code> 作为函数调用的语法，通过引用调用了该匿名函数。</p>
@@ -59,10 +59,10 @@
 <p>如果在前面加上 <code>void</code> 关键字，那么就是我们期待的结果了，由于此时函数定义是表达式中的一部分，故没有被解析成函数申明。</p>
 </blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><strong>函数申明</strong>是一个很纯粹的函数申明方法，其函数名就是申明中的函数名，而且其申明必须是干干净净的。同时其申明具有变量提升的效果。</p>
-<p><strong>函数表达式</strong>, 比如匿名函数，或者任何作为表达式一部分的<em>函数定义</em>(此处特意与”函数申明“区别开来)<br>，都是函数表达式（好吧，其实是我目前自己这么理解的，还不能说得这么绝对==)。其被调用的方式，就是通过函数表达式的执行所返回的引用。</p>
+<p><strong>函数表达式</strong>, 比如匿名函数，或者任何作为表达式一部分的<em>函数定义</em>(此处特意与”函数申明“区别开来)<br>，都是函数表达式（好吧，其实是我目前自己这么理解的，还不能说得这么绝对==)。其被调用的方式，就是通过调用函数表达式的执行所返回的引用。</p>
 <p>如果函数表达式中的函数设置了函数名，如 <code>void function func (){}</code>。里面的函数名 <code>func</code> ， 其实只在源码中存在意义，编译后它没有意义，也不可以被引用到，即我们无法通过 <code>func()</code> 来调用该函数。</p>
 <p>同时参考：<a href="http://www.cnblogs.com/TomXu/archive/2011/12/29/2290308.html" target="_blank" rel="external">深入理解JavaScript系列（2）：揭秘命名函数表达式</a></p>
-</div><a data-url="http://codingfishman.github.io/2016/05/29/函数申明与函数表达式/" data-id="ciosbu7f0000gvd2qslfe3smm" class="article-share-link">分享到</a><div class="tags"><a href="/tags/JavaScript/">JavaScript</a></div><div class="post-nav"><a href="/2016/05/21/flex布局当overflow时无法滑动到顶部/" class="next">flex布局当overflow时无法滑动到顶部</a></div><div id="disqus_thread"><script>var disqus_shortname = 'codingfishman';
+</div><a data-url="http://codingfishman.github.io/2016/05/29/函数申明与函数表达式/" data-id="ciosdeq47000g4h2q05t938uv" class="article-share-link">分享到</a><div class="tags"><a href="/tags/JavaScript/">JavaScript</a></div><div class="post-nav"><a href="/2016/05/21/flex布局当overflow时无法滑动到顶部/" class="next">flex布局当overflow时无法滑动到顶部</a></div><div id="disqus_thread"><script>var disqus_shortname = 'codingfishman';
 var disqus_identifier = '2016/05/29/函数申明与函数表达式/';
 var disqus_title = '函数申明与函数表达式';
 var disqus_url = 'http://codingfishman.github.io/2016/05/29/函数申明与函数表达式/';
